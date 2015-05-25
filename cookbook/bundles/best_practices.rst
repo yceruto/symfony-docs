@@ -45,15 +45,13 @@ bundle class name must follow these simple rules:
 
 Here are some valid bundle namespaces and class names:
 
-+-----------------------------------+--------------------------+
-| Namespace                         | Bundle Class Name        |
-+===================================+==========================+
-| ``Acme\Bundle\BlogBundle``        | ``AcmeBlogBundle``       |
-+-----------------------------------+--------------------------+
-| ``Acme\Bundle\Social\BlogBundle`` | ``AcmeSocialBlogBundle`` |
-+-----------------------------------+--------------------------+
-| ``Acme\BlogBundle``               | ``AcmeBlogBundle``       |
-+-----------------------------------+--------------------------+
+=================================  ========================
+Namespace                          Bundle Class Name
+=================================  ========================
+``Acme\Bundle\BlogBundle``         ``AcmeBlogBundle``
+``Acme\Bundle\Social\BlogBundle``  ``AcmeSocialBlogBundle``
+``Acme\BlogBundle``                ``AcmeBlogBundle``
+=================================  ========================
 
 By convention, the ``getName()`` method of the bundle class should return the
 class name.
@@ -83,22 +81,19 @@ The basic directory structure of a HelloBundle must read as follows:
 
 .. code-block:: text
 
-    XXX/...
-        HelloBundle/
-            HelloBundle.php
-            Controller/
-            Resources/
-                meta/
-                    LICENSE
-                config/
-                doc/
-                    index.rst
-                translations/
-                views/
-                public/
-            Tests/
-
-The ``XXX`` directory(ies) reflects the namespace structure of the bundle.
+    HelloBundle/
+    ├─ HelloBundle.php
+    ├─ Controller/
+    ├─ Resources/
+    │  ├─ meta/
+    │  │  └─ LICENSE
+    │  ├─ config/
+    │  ├─ doc/
+    │  │  └─ index.rst
+    │  ├─ translations/
+    │  ├─ views/
+    │  └─ public/
+    └─ Tests/
 
 The following files are mandatory:
 
@@ -122,32 +117,24 @@ files are going to be part of the repository.
 
 The following classes and files have specific emplacements:
 
-+------------------------------+-----------------------------+
-| Type                         | Directory                   |
-+==============================+=============================+
-| Commands                     | ``Command/``                |
-+------------------------------+-----------------------------+
-| Controllers                  | ``Controller/``             |
-+------------------------------+-----------------------------+
-| Service Container Extensions | ``DependencyInjection/``    |
-+------------------------------+-----------------------------+
-| Event Listeners              | ``EventListener/``          |
-+------------------------------+-----------------------------+
-| Configuration                | ``Resources/config/``       |
-+------------------------------+-----------------------------+
-| Web Resources                | ``Resources/public/``       |
-+------------------------------+-----------------------------+
-| Translation files            | ``Resources/translations/`` |
-+------------------------------+-----------------------------+
-| Templates                    | ``Resources/views/``        |
-+------------------------------+-----------------------------+
-| Unit and Functional Tests    | ``Tests/``                  |
-+------------------------------+-----------------------------+
+============================  ===========================
+Type                          Directory
+============================  ===========================
+Commands                      ``Command/``
+Controllers                   ``Controller/``
+Service Container Extensions  ``DependencyInjection/``
+Event Listeners               ``EventListener/``
+Configuration                 ``Resources/config/``
+Web Resources                 ``Resources/public/``
+Translation files             ``Resources/translations/``
+Templates                     ``Resources/views/``
+Tests                         ``Tests/``
+============================  ===========================
 
 .. note::
 
     When building a reusable bundle, model classes should be placed in the
-    ``Model`` namespace. See :doc:`/cookbook/doctrine/mapping_model_classes` for
+    ``Model`` namespace. See :doc:`/cookbook/doctrine/mapping_model_classes` on
     how to handle the mapping with a compiler pass.
 
 Classes
@@ -155,13 +142,13 @@ Classes
 
 The bundle directory structure is used as the namespace hierarchy. For
 instance, a ``HelloController`` controller is stored in
-``Bundle/HelloBundle/Controller/HelloController.php`` and the fully qualified
-class name is ``Bundle\HelloBundle\Controller\HelloController``.
+``HelloBundle/Controller/HelloController.php`` and the fully qualified
+class name is ``HelloBundle\Controller\HelloController``.
 
 All classes and files must follow the Symfony coding :doc:`standards </contributing/code/standards>`.
 
 Some classes should be seen as facades and should be as short as possible, like
-Commands, Helpers, Listeners, and Controllers.
+Commands, Helpers, Listeners and Controllers.
 
 Classes that connect to the event dispatcher should be suffixed with
 ``Listener``.
@@ -174,7 +161,7 @@ Vendors
 A bundle must not embed third-party PHP libraries. It should rely on the
 standard Symfony autoloading instead.
 
-A bundle should not embed third-party libraries written in JavaScript, CSS, or
+A bundle should not embed third-party libraries written in JavaScript, CSS or
 any other language.
 
 Tests
@@ -190,6 +177,7 @@ the ``Tests/`` directory. Tests should follow the following principles:
 * The tests should cover at least 95% of the code base.
 
 .. note::
+
    A test suite must not contain ``AllTests.php`` scripts, but must rely on the
    existence of a ``phpunit.xml.dist`` file.
 
@@ -368,12 +356,6 @@ The end user can provide values in any configuration file:
 
         // app/config/config.php
         $container->setParameter('acme_hello.email.from', 'fabien@example.com');
-
-    .. code-block:: ini
-
-        ; app/config/config.ini
-        [parameters]
-        acme_hello.email.from = fabien@example.com
 
 Retrieve the configuration parameters in your code from the container::
 
