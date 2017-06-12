@@ -60,7 +60,7 @@ Guides
 Full API
 ........
 
-* `Full API`_: https://github.com/symfony/webpack-encore/blob/master/index.js
+* `Full API`_
 
 Other Front-End Articles
 ........................
